@@ -1,0 +1,27 @@
+/* main.css - Importação do Tailwind e ajustes globais */
+@import './base.css';
+@import 'tailwindcss';
+
+@layer components {
+    .btn-primary {
+        border-radius: calc(infinity * 1px);
+        background-color: var(--color-violet-500);
+        font-weight: var(--font-weight-semibold);
+        padding: 1rem !important;
+        color: var(--color-white);
+        box-shadow: var(--shadow-md);
+
+        &:hover {
+            @media (hover: hover) {
+                background-color: var(--color-violet-700);
+            }
+        }
+    }
+}
+
+#app {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 2rem;
+    font-weight: normal;
+}
