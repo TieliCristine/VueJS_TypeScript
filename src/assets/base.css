@@ -1,7 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
 html,
 body {
     margin: 0;
     padding: 0;
+
+    .text-hero {
+        font-family: "Righteous", serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 4rem;
+    }
 }
 
 :root {
@@ -56,3 +65,4 @@ body {
         color: var(--color-link-hover-dark);
     }
 }
+

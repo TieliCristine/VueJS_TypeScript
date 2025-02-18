@@ -5,9 +5,19 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
     <header>
         <div class="wrapper">
-            <nav>
+            <nav class="contents align-middle justify-center">
                 <RouterLink to="/">Home</RouterLink>
+                <span class="divider">✦</span>
+                <RouterLink to="/courses">Cursos</RouterLink>
+                <span class="divider">✦</span>
                 <RouterLink to="/about">Nossa Plataforma</RouterLink>
+                <span class="divider">✦</span>
+                <RouterLink to="/student">Área do Aluno</RouterLink>
+                <span class="divider">✦</span>
+                <RouterLink to="/faq">FAQ</RouterLink>
+                <span class="divider">✦</span>
+                <RouterLink to="/contact">Contato</RouterLink>
+                <button class="btn btn-primary">Cadastre-se</button>
             </nav>
         </div>
     </header>
@@ -38,6 +48,12 @@ nav a {
 
 nav a:first-of-type {
     border: 0;
+}
+
+.divider {
+    color: var(--color-primary);
+    padding: 0 8px;
+    font-size: 14px;
 }
 
 @media (min-width: 1024px) {

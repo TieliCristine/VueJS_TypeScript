@@ -22,8 +22,9 @@ onMounted(() => {
 </script>
 
 <template>
-    <h1 class="text-4xl">DESTRAVE O SEU POTENCIAL</h1>
+    <h1 class="text-4xl text-hero">DESTRAVE SEU POTENCIAL</h1>
     <button @click="toggleDarkMode" class="btn btn-primary">
         {{ isDarkMode ? 'Dark Mode' : 'Light Mode' }}
     </button>
 </template>
+

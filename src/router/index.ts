@@ -5,6 +5,10 @@ import Register from '@/views/auth/Register.vue'
 import Login from '@/views/auth/Login.vue'
 import Dashboard from '@/views/Dashboard.vue'
 import AboutView from '@/views/AboutView.vue'
+import Courses from '@/views/Courses.vue'
+import Student from '@/views/Student.vue'
+import Faq from '@/views/Faq.vue'
+import Contact from '@/views/Contact.vue'
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -36,6 +40,26 @@ const router = createRouter({
             name: 'Dashboard',
             component: Dashboard,
             meta: { requiresAuth: true },
+        },
+        {
+            path: '/courses',
+            name: 'Cursos',
+            component: Courses,
+        },
+        {
+            path: '/student',
+            name: 'Student',
+            component: Student,
+        },
+        {
+            path: '/faq',
+            name: 'Faq',
+            component: Faq,
+        },
+        {
+            path: '/contact',
+            name: 'Contact',
+            component: Contact,
         },
         {
             path: '/404',
