@@ -1,17 +1,35 @@
 <script setup lang="ts">
 import { useAuthStore } from '@/stores/auth.ts'
+import { ArrowLeft } from 'lucide-vue-next'
 
-const { login } = useAuthStore();
-
+const { login } = useAuthStore()
 </script>
 <template>
-    <section class="flex flex-col items-center justify-center ">
-        <h1 class="text-3xl text-slate-200 p-4">Login</h1>
-        <div class="max-w-md mx-auto bg-slate-950 rounded-lg p-4">
-            <FormKit type="form" submit-label="Login" @submit="login">
-                <FormKit type="email" label="Email" name="email"/>
-                <FormKit type="password" label="Password" name="password"/>
-            </FormKit>
+    <section>
+        <div class="text-gray-900 dark:text-gray-100">
+            <button class="absolute btn-icon">
+                <RouterLink to="/" >
+                    <ArrowLeft class="w-6 h-6" />
+                </RouterLink>
+            </button>
+            <h1 class="text-3xl font-semibold mb-8 text-center">Acesse</h1>
+            <div>
+                <FormKit type="form" submit-label="Entrar" @submit="login" method="post">
+                    <FormKit
+                        type="email"
+                        label="Email"
+                        name="email"
+                        placeholder="jane@example.com"
+                        validation="required|email"
+                    />
+                    <FormKit
+                        type="password"
+                        label="Senha"
+                        name="password"
+                        validation="required"
+                    />
+                </FormKit>
+            </div>
         </div>
     </section>
 </template>

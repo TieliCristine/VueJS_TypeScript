@@ -1,76 +1,55 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import { useAuthStore } from '@/stores/auth.ts'
+import Dashboard from '@/views/Dashboard.vue'
+import MainLayout from '@/layouts/MainLayout.vue'
+import AuthLayout from '@/layouts/AuthLayout.vue'
 import Register from '@/views/auth/Register.vue'
 import Login from '@/views/auth/Login.vue'
-import Dashboard from '@/views/Dashboard.vue'
-import AboutView from '@/views/AboutView.vue'
-import Courses from '@/views/Courses.vue'
-import Student from '@/views/Student.vue'
-import Faq from '@/views/Faq.vue'
-import Contact from '@/views/Contact.vue'
+import StudentLayout from '@/layouts/StudentLayout.vue'
+import StudentArea from '@/views/student/StudentArea.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import { useAuthStore } from '@/stores/auth.ts'
+
+const HomeView = () => import('@/views/HomeView.vue')
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
         {
             path: '/',
-            name: 'Home',
-            component: HomeView,
+            component: MainLayout,
+            children: [
+                { path: '', name: 'Home', component: HomeView }
+            ]
         },
         {
-            path: '/about',
-            name: 'About',
-            component: AboutView,
-        },
-        {
-            path: '/register',
-            name: 'Register',
-            component: Register,
-            meta: { requiresGuest: true },
-        },
-        {
-            path: '/login',
-            name: 'Login',
-            component: Login,
-            meta: { requiresGuest: true },
-        },
-        {
-            path: '/dashboard',
-            name: 'Dashboard',
-            component: Dashboard,
-            meta: { requiresAuth: true },
-        },
-        {
-            path: '/courses',
-            name: 'Cursos',
-            component: Courses,
+            path: '/auth',
+            component: AuthLayout,
+            children: [
+                {
+                    path: 'register',
+                    name: 'Register',
+                    component: Register,
+                    meta: { requiresGuest: true }
+                },
+                {
+                    path: 'login',
+                    name: 'Login',
+                    component: Login,
+                    meta: { requiresGuest: true }
+                }
+            ]
         },
         {
             path: '/student',
-            name: 'Student',
-            component: Student,
+            component: StudentLayout,
+            meta: { requiresAuth: true },
+            children: [
+                { path: 'dashboard', name: 'Dashboard', component: Dashboard },
+                { path: 'courses', name: 'StudentCourses', component: StudentArea }
+            ]
         },
-        {
-            path: '/faq',
-            name: 'Faq',
-            component: Faq,
-        },
-        {
-            path: '/contact',
-            name: 'Contact',
-            component: Contact,
-        },
-        {
-            path: '/404',
-            name: '404',
-            component: () => import('@/views/404.vue'),
-        },
-        {
-            path: '/500',
-            name: '500',
-            component: () => import('@/views/500.vue'),
-        },
+        { path: '/404', name: '404', component: () => import('@/views/404.vue') },
+        { path: '/500', name: '500', component: () => import('@/views/500.vue') },
+        { path: '/:pathMatch(.*)*', redirect: '/404' }
     ],
 })
 

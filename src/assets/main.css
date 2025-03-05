@@ -1,27 +1,61 @@
-/* main.css - Importação do Tailwind e ajustes globais */
 @import './base.css';
 @import 'tailwindcss';
 
+
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer components {
     .btn-primary {
-        border-radius: calc(infinity * 1px);
-        background-color: var(--color-violet-500);
-        font-weight: var(--font-weight-semibold);
-        padding: .5rem;
-        color: var(--color-white);
-        box-shadow: var(--shadow-md);
+        @apply
+        font-semibold
+        py-2 px-4
+        rounded-4xl
+        shadow-md
+        transition
+        focus:outline-none
+        focus:ring-2
 
-        &:hover {
-            @media (hover: hover) {
-                background-color: var(--color-violet-700);
-            }
-        }
+        bg-blue-600
+        text-white
+        hover:bg-blue-700
+        focus:ring-blue-500
+
+        dark:bg-blue-600
+        dark:text-gray-100;
+    }
+
+    .btn-secondary {
+        @apply
+        font-semibold
+        py-2 px-4
+        rounded-4xl
+        transition
+        focus:outline-none
+        focus:ring-2
+
+        bg-gray-200
+        hover:bg-gray-300
+        text-gray-900
+
+        dark:bg-gray-700
+        dark:hover:bg-gray-600
+        dark:text-gray-100;
+    }
+
+    .btn-icon {
+        @apply
+        font-semibold
+        py-2 px-4
+        rounded-4xl
+        transition
+        focus:outline-none
+        focus:ring-2
+
+        hover:bg-gray-300
+        text-gray-900
+
+        dark:hover:bg-gray-600
+        dark:text-gray-100;
     }
 }
 
-#app {
-    max-width: 80rem;
-    margin: 0 auto;
-    padding: 2rem;
-    font-weight: normal;
-}

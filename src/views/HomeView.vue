@@ -1,30 +1,36 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
-
-const isDarkMode = ref(false)
-const updateTheme = (dark: boolean) => {
-    document.documentElement.classList.toggle('dark', dark)
-    localStorage.setItem('theme', dark ? 'dark' : 'light')
-}
-const toggleDarkMode = () => {
-    isDarkMode.value = !isDarkMode.value
-}
-
-// Atualiza o tema sempre que `isDarkMode` mudar
-watch(isDarkMode, updateTheme)
-
-// Define o tema ao carregar a página
-onMounted(() => {
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    isDarkMode.value =
-        localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDark)
-})
+import { RouterLink } from 'vue-router'
 </script>
 
 <template>
-    <h1 class="text-4xl text-hero">DESTRAVE SEU POTENCIAL</h1>
-    <button @click="toggleDarkMode" class="btn btn-primary">
-        {{ isDarkMode ? 'Dark Mode' : 'Light Mode' }}
-    </button>
-</template>
+    <section id="hero" class="h-screen flex">
+        <div class="flex flex-col items-center justify-center text-center gap-20 w-3/5">
+            <h1 class="text-7xl font-hero dark:text-white">DESTRAVE SEU POTENCIAL</h1>
+            <RouterLink to="/auth/register" class="btn-primary">Matricule-se já!</RouterLink>
+        </div>
+        <img
+            src="../../src/assets/img-woman-study.jpg"
+            alt="Woman study at home."
+            class="h-screen flex-1"
+        />
+    </section>
 
+    <section
+        id="courses"
+        class="h-screen flex items-center justify-center pt-20"
+    >
+        <h2 class="text-2xl dark:text-white font-bold">Nossos Cursos</h2>
+    </section>
+
+        <section id="platform" class="h-screen flex items-center justify-center">
+            <h2 class="text-2xl dark:text-white font-bold">Sobre a Nossa Plataforma</h2>
+        </section>
+
+        <section id="student" class="h-screen flex items-center justify-center">
+            <h2 class="text-2xl dark:text-white font-bold">Área do Aluno</h2>
+        </section>
+
+        <section id="contact" class="h-screen flex items-center justify-center">
+            <h2 class="text-2xl dark:text-white font-bold">Entre em Contato</h2>
+        </section>
+</template>

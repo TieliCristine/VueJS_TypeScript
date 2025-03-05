@@ -3,7 +3,6 @@ import router from '@/router';
 import { useAuthStore } from '@/stores/auth.ts'
 import { useToast } from 'vue-toast-notification'
 
-
 const axiosInstance = axios.create({
     baseURL: 'http://localhost:8000/api',
     withCredentials: true,
@@ -21,7 +20,7 @@ axiosInstance.interceptors.response.use(
             case 401:
                 auth.cleanState();
                 $toast.error('Unauthorized');
-                await router.push('/login');
+                await router.push('/auth/login');
                 break;
             case 404:
                 $toast.error('Page Not Found');
@@ -30,7 +29,7 @@ axiosInstance.interceptors.response.use(
             case 419:
                 auth.cleanState();
                 $toast.error('Unauthorized');
-                await router.push('/login');
+                await router.push('/auth/login');
                 break;
             case 500:
                 $toast.error('Internal Server Error');
